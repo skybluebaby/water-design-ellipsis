@@ -4,7 +4,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.tsx',
+  entry: './test/index.tsx',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, './dist'),
@@ -20,7 +20,7 @@ module.exports = {
         test: /\.(j|t)sx?$/,
         exclude: /node_modules/,
         resolve: {
-          extensions: ['.tsx', '.jsx', '.js', '.json'],
+          extensions: ['.tsx', '.jsx', '.ts', '.js', '.json'],
         },
       },
       {

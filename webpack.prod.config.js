@@ -1,16 +1,17 @@
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 const ForkTSCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: './src/Ellipsis/index.tsx',
+  entry: './src/index.tsx',
   output: {
     filename: 'index.js',
-    path: path.resolve(__dirname, './dist/lib'),
+    path: path.resolve(__dirname, './dist'),
     libraryTarget: 'umd',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    extensions: ['.tsx', '.jsx', '.ts', '.js', '.json'],
   },
   externals: {
     react: {
@@ -33,7 +34,7 @@ module.exports = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         resolve: {
-          extensions: ['.tsx', '.jsx', '.js', '.json'],
+          extensions: ['.tsx', '.jsx', '.ts', '.js', '.json'],
         },
       },
       {
@@ -52,5 +53,10 @@ module.exports = {
       },
     ],
   },
-  plugins: [new ForkTSCheckerWebpackPlugin()],
+  plugins: [
+    new ForkTSCheckerWebpackPlugin(),
+    new CopyPlugin({
+      patterns: [{ from: './src/index.d.ts', to: './index.d.ts' }],
+    }),
+  ],
 };

@@ -1,17 +1,16 @@
 {
   "name": "water-design-ellipsis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "一个基于react的单行&多行溢出隐藏组件",
-  "main": "dist/lib/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.config.js",
     "dev": "webpack-dev-server --config webpack.dev.config.js",
     "build": "webpack --config webpack.prod.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/skybluebaby/water-design-ellipsis.git"
+    "clean:win": "rimraf dist",
+    "clean:mac": "rm -rf dist",
+    "test": "npm run dev"
   },
   "keywords": [
     "ellipsis",
@@ -25,21 +24,22 @@
   "homepage": "https://github.com/skybluebaby/water-design-ellipsis#readme",
   "dependencies": {},
   "peerDependencies": {
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.4",
     "@babel/preset-react": "^7.18.6",
-    "@types/react": "^16.8.4",
-    "@types/react-dom": "^16.8.4",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "babel-loader": "^8.2.5",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "html-webpack-plugin": "^5.5.0",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "sass": "^1.55.0",
     "sass-loader": "^13.1.0",
     "style-loader": "^3.3.1",

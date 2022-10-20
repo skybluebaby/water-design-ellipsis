@@ -11,20 +11,20 @@
 ## 使用
 
 ```tsx
-import React from 'react';
-import ReactDom from 'react-dom';
-import Ellipsis from './Ellipsis';
+import { createRoot } from 'react-dom/client';
+import Ellipsis from 'water-design-ellipsis';
 import './index.css';
 
-const App = () => {
+function App() {
   return (
     <Ellipsis className="title">
-      看花不是花，看雾亦非雾，是宿命还是我糊涂；一把辛酸泪，谁解其中味；想你千万遍，万念都成灰
+      看花不是花，看雾亦非雾，是宿命还是我糊涂；看岁月晃晃悠悠，不紧不慢拉着我走
     </Ellipsis>
   );
-};
+}
 
-ReactDom.render(<App />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root')!);
+root.render(<App />);
 ```
 
 ```css
@@ -39,18 +39,18 @@ ReactDom.render(<App />, document.getElementById('root'));
 
 ## API
 
-| 参数               | 说明                                           | 类型            | 默认值  | 版本 |
-| :----------------- | :--------------------------------------------- | :-------------- | :------ | :--- |
-| `className`        | 自定义类名                                     | `string`        | -       |      |
-| `style`            | 自定义样式对象                                 | `CSSProperties` | -       |      |
-| `defaultDirectCut` | 选择文本溢出直接截断，无省略号                 | `boolean`       | `false` |      |
-| `middleOverflow`   | 是否选择中间位置省略                           | `boolean`       |         | -    |
-| `endCharCount`     | 当一行溢出时，且选择中间省略时，文本尾部字符数 | `number`        | `4`     |      |
-| `line`             | 选择文本多少行溢出隐藏, 仅在尾部省略生效       | `number`        | `1`     |      |
-| `prevClassName`    | 中间溢出省略前文本自定义类名                   | `string`        | -       |      |
-| `nextClassName`    | 中间溢出省略后文本自定义类名                   | `string`        | -       |      |
-| `wordClassName`    | 直接截断每个字符自定义类名                     | `string`        | -       |      |
-| `prevStyle`        | 中间溢出省略前文本自定义样式对象               | `CSSProperties` | -       |      |
-| `nextStyle`        | 中间溢出省略后文本自定义样式对象               | `CSSProperties` | -       |      |
-| `wordStyle`        | 直接截断每个字符自定义样式对象                 | `CSSProperties` | -       |      |
-| `children`         | 文本                                           | `string`        | -       |      |
+| 参数                | 说明                                           | 类型            | 默认值  | 版本 |
+| :------------------ | :--------------------------------------------- | :-------------- | :------ | :--- |
+| `className`         | 自定义类名                                     | `string`        | -       |      |
+| `style`             | 自定义样式对象                                 | `CSSProperties` | -       |      |
+| `defaultDirectCut`  | 选择文本溢出直接截断，无省略号                 | `boolean`       | `false` |      |
+| `middleOverflow`    | 是否选择中间位置省略                           | `boolean`       |         | -    |
+| `endCharCount`      | 当一行溢出时，且选择中间省略时，文本尾部字符数 | `number`        | `4`     |      |
+| `line`              | 选择文本多少行溢出隐藏, 仅在尾部省略生效       | `number`        | `1`     |      |
+| `prevTextClassName` | 中间溢出省略前文本自定义类名                   | `string`        | -       |      |
+| `nextTextClassName` | 中间溢出省略后文本自定义类名                   | `string`        | -       |      |
+| `wordClassName`     | 直接截断每个字符自定义类名                     | `string`        | -       |      |
+| `prevTextStyle`     | 中间溢出省略前文本自定义样式对象               | `CSSProperties` | -       |      |
+| `nextTextStyle`     | 中间溢出省略后文本自定义样式对象               | `CSSProperties` | -       |      |
+| `wordStyle`         | 直接截断每个字符自定义样式对象                 | `CSSProperties` | -       |      |
+| `children`          | 文本                                           | `string`        | -       |      |
