@@ -23,15 +23,8 @@
   overflow: hidden;
 }
 
-.cut-wrapper {
+.wrapper {
   display: flex;
   flex-flow: row wrap;
-  overflow: hidden;
-}
-
-.wrapper {
-  display: block;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   overflow: hidden;
 }

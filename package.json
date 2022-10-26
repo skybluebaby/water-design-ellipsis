@@ -1,9 +1,12 @@
 {
   "name": "water-design-ellipsis",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "一个基于react的单行&多行溢出隐藏组件",
-  "main": "./dist/index.js",
+  "main": "./dist/index.min.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.config.js",
     "dev": "webpack-dev-server --config webpack.dev.config.js",
@@ -22,7 +25,9 @@
     "url": "https://github.com/skybluebaby/water-design-ellipsis/issues"
   },
   "homepage": "https://github.com/skybluebaby/water-design-ellipsis#readme",
-  "dependencies": {},
+  "dependencies": {
+    "react-tooltip": "^4.4.3"
+  },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
@@ -33,9 +38,13 @@
     "@babel/preset-react": "^7.18.6",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "@typescript-eslint/parser": "^5.41.0",
     "babel-loader": "^8.2.5",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
+    "eslint": "^8.26.0",
+    "eslint-plugin-react": "^7.31.10",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "html-webpack-plugin": "^5.5.0",
     "react": "^18.2.0",

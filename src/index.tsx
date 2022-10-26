@@ -1,8 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Tooltip from './Tooltip';
 import { IEllipsisProps } from './index.d';
 import styles from './index.module.scss';
 
-const Ellipsis: React.FC<IEllipsisProps> = (props) => {
+const isMobile =
+  /Android|iPhone|iphone|iPod|ipod|iPad|ipad|Windows Phone|SymbianOS/i.test(
+    navigator.userAgent
+  );
+
+const EllipsisContainer: React.FC<Omit<IEllipsisProps, 'tooltipProps'>> = (
+  props
+) => {
   const {
     children,
     middleOverflow = false, // 选择溢出隐藏截断的位置
@@ -17,15 +25,21 @@ const Ellipsis: React.FC<IEllipsisProps> = (props) => {
     prevTextStyle,
     nextTextClassName = '', // 当选中间截断时的后面文本样式
     nextTextStyle,
+    isOverflow,
+    setIsOverflow,
     ...rest
   } = props;
-  // 是否溢出
-  const [isOverflow, setIsOverflow] = useState(false);
+
   const textRef = useRef(null);
 
   useEffect(() => {
     const textDom = textRef.current! as HTMLDivElement;
-    if (textDom && textDom.scrollWidth > textDom.clientWidth) {
+    const { scrollWidth, scrollHeight, clientWidth, clientHeight } =
+      textDom || {};
+    if (
+      textDom &&
+      (scrollWidth > clientWidth || scrollHeight - 2 > clientHeight)
+    ) {
       setIsOverflow(true);
     }
   }, []);
@@ -83,15 +97,12 @@ const Ellipsis: React.FC<IEllipsisProps> = (props) => {
     );
   };
 
-  if (!children) {
-    return null;
-  }
-
   if (defaultDirectCut) {
     return (
       <div
-        className={`${styles['cut-wrapper']} ${className}`}
+        className={`${styles.wrapper} ${className}`}
         style={style}
+        ref={textRef}
         {...rest}
       >
         {renderWord(children)}
@@ -105,6 +116,7 @@ const Ellipsis: React.FC<IEllipsisProps> = (props) => {
       <div
         className={`${styles.container} ${styles.line} ${className}`}
         style={line > 2 ? { WebkitLineClamp: line, ...style } : style}
+        ref={textRef}
         {...rest}
       >
         {children}
@@ -114,15 +126,36 @@ const Ellipsis: React.FC<IEllipsisProps> = (props) => {
 
   // 单行隐藏
   return (
-    <div
-      className={`${
-        middleOverflow ? styles.container : styles.wrapper
-      } ${className}`}
-      style={style}
-      {...rest}
-    >
-      {middleOverflow ? renderContent(children) : children}
+    <div className={`${styles.container} ${className}`} style={style} {...rest}>
+      {renderContent(children)}
     </div>
+  );
+};
+
+const Ellipsis: React.FC<IEllipsisProps> = (props) => {
+  const { enableTooltip = true, tooltipProps, ...rest } = props;
+  // 是否溢出
+  const [isOverflow, setIsOverflow] = useState(false);
+
+  if (!props.children) {
+    return null;
+  }
+
+  return (
+    <>
+      <EllipsisContainer
+        {...rest}
+        isOverflow={isOverflow}
+        setIsOverflow={setIsOverflow}
+        data-tip
+        data-for="water-design-ellipsis"
+      />
+      {enableTooltip && !isMobile && isOverflow && (
+        <Tooltip id="water-design-ellipsis" {...tooltipProps}>
+          {props.children}
+        </Tooltip>
+      )}
+    </>
   );
 };
 

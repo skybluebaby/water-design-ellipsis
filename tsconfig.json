@@ -14,6 +14,6 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true
   },
-  "includes": ["src", "./index.d.ts"],
+  "includes": ["src"],
   "exclude": ["node_modules", "dist"]
 }
