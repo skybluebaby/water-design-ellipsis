@@ -7,7 +7,6 @@ function App() {
   return (
     <Ellipsis
       className="title"
-      data-padding="6px 20px"
       tooltipProps={{ textColor: 'pink', className: 'tool-tip' }}
     >
       看花不是花，看雾亦非雾，是宿命还是我糊涂；看岁月晃晃悠悠，不紧不慢拉着我走
